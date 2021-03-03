@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+<html xmlns = "http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	
+	<script
+		src="https://code.jquery.com/jquery-3.5.0.min.js"
+		integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+		crossorigin="anonymous"></script>
+		<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link rel="stylesheet" href="public/fa/css/all.css">
+	<link rel="stylesheet" href="public/css/style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+	<div id="loading-layer">Loading...<br><span>0</span>%</div>
+<div id="info">
+	Root : [<span></span>]
+	Bass : [<span></span>]
+	Notes : [<span></span>]
+</div>
+<div id="keyboard-container">
+	<div id="keyboard"></div>
+</div>
+<ul id="slide-out" class="sidenav">
+	<!-- <li>
+		<div class="user-view">
+			<div class="background"><img src="images/office.jpg"></div>
+			<a href="#user"><img class="circle" src="images/yuna.jpg"></a>
+			<a href="#name"><span class="white-text name">John Doe</span></a>
+			<a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+		</div>
+	</li> -->
+	<li><a href="#!" class="waves-effect" onclick="sideNav.showAbout()">About</a></li>
+	<li><a href="#!" class="waves-effect" onclick="sideNav.showCredit()"">Credit</a></li>
+	<li><div class="divider"></div></li>
+	<!-- <li><a class="waves-effect">Donate :) </a></li> -->
+</ul>
+		
+
+<div class="button-container" id="main-menu">
+	<div class="button s4 bassButton" onclick="main.buttonFn.toggleBass()"><img height=20 src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/FClef.svg/24px-FClef.svg.png" /> : <span>off</span></div>
+	<div class="button s4" onclick="main.buttonFn.switchLayout()"><i class="fas fa-retweet fa-lg"></i></div>
+	<div class="button s4" onclick="main.buttonFn.showHelp()"><i class="far fa-question-circle fa-lg"></i></div>
+	<div class="button s4" onclick="sideNav.openSideNav()"><i class="fas fa-bars fa-lg"></i></div>
+	<div class="button-row"></div>
+</div>
+<div class="button-container" id="button-container-1" style="display:visible">
+	<div class="button s7 big-font" onclick="menu1.buttonFn.transpose(-3)">&laquo;&laquo;&laquo;</div>
+	<div class="button s7 big-font" onclick="menu1.buttonFn.transpose(-2)">&laquo;&laquo;</div>
+	<div class="button s7 big-font" onclick="menu1.buttonFn.transpose(-1)">&laquo;</div>
+	<div class="button s7 big-font" onclick="menu1.buttonFn.transpose(0)">o</div>
+	<div class="button s7 big-font" onclick="menu1.buttonFn.transpose(1)">&raquo;</div>
+	<div class="button s7 big-font" onclick="menu1.buttonFn.transpose(2)">&raquo;&raquo;</div>
+	<div class="button s7 big-font" onclick="menu1.buttonFn.transpose(3)">&raquo;&raquo;&raquo;</div>
+
+	<div class="button-row"></div>
+
+	<div class="button s14 inactive" onclick=""></div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChordDegree(1, true, true)">I♯</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChordDegree(2, true, true)">III♭</div>
+	<div class="button s7 inactive" onclick=""></div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChordDegree(4, true, true)">IV♯</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChordDegree(5, true, true)">VI♭</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChordDegree(6, true, true)">VII♭</div>
+	<div class="button s14 inactive" onclick=""></div>
+
+	<div class="button s7" onclick="menu1.buttonFn.generateChordDegree(1, true)">I</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChordDegree(2, false)">II</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChordDegree(3, false)">III</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChordDegree(4, true)">IV</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChordDegree(5, true)">V</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChordDegree(6, false)">VI</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChordDegree(7)">VII</div>
+
+	<div class="button s7" onclick="menu1.buttonFn.generateChordDegree(1, false)">I min</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChordDegree(2, true)">II Maj</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChordDegree(3, true)">III Maj</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChordDegree(4, false)">IV min</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChordDegree(5, false)">V min</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChordDegree(6, true)">VI Maj</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChordDegree(1, true, false, 'D7')">I D7</div>
+
+	<div class="button-row"></div>
+
+	<div class="button s7" onclick="menu1.buttonFn.generateChord('MAJOR')">Maj</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChord('MAJOR', null, 1)">Maj inv1</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChord('MAJOR', null, 2)">Maj inv2</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChord('MAJOR', 7)">Maj7</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChord('MAJOR', 9)">Maj9</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChord('MAJOR', 'D7')">Maj D7</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChord('AUG')">aug</div>
+
+	<div class="button s7" onclick="menu1.buttonFn.generateChord('MINOR')">min</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChord('MINOR', null, 1)">min inv1</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChord('MINOR', null, 2)">min inv2</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChord('MINOR', 7)">min 7</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChord('MINOR', 9)">min 9</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChord('DIM', 7)">dim 7</div>
+	<div class="button s7" onclick="menu1.buttonFn.generateChord('DIM')">dim</div>
+</div>
+<div id="modal-help-1" class="modal">
+	<div class="modal-content">
+		<h4>Help</h4>
+		<p>1. Press a key on the keyboard to determine the root of the chord</p>
+		<p>2. Select chord by degree or chord name</p>
+		<p>3. You can change the root by pressing the keyboard again or press the transpose button</p><br>
+		<h4>Symbol</h4>
+		<table>
+			<tr>
+				<td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/FClef.svg/24px-FClef.svg.png" /></td>
+				<td>
+					Low : Add bass on octave 3 when playing chord<br>
+					Lower : Add bass on octave 2 when playing chord<br>
+					Double : Add bass on octave 2 and 3 when playing chord<br>
+				</td>
+			</tr>
+			<tr><td><i class="fas fa-retweet fa-lg"></i></td><td>Switch between mode</td></tr>
+			<tr><td><i class="far fa-question-circle fa-lg"></i></td><td>Get help for each mode</td></tr>
+			<tr><td style="font-size: 25px;">&laquo;</td><td>Transpose half step down</td></tr>
+			<tr><td style="font-size: 25px;">o</td><td>Replay previous chord</td></tr>
+			<tr><td style="font-size: 25px;">&raquo;</td><td>Transpose half step up</td></tr>
+		</table>
+	</div>
+</div><div class="button-container" id="button-container-2" style="display:none">
+	<div class="button s5 button-inversion" onclick="menu2.buttonFn.setInversion(this, 0)">Root</div>
+	<div class="button s5 button-inversion" onclick="menu2.buttonFn.setInversion(this, 1)">1st Inv</div>
+	<div class="button s5 button-inversion" onclick="menu2.buttonFn.setInversion(this, 2)">2nd Inv</div>
+	<div class="button s5 button-inversion" onclick="menu2.buttonFn.setInversion(this, 3)">3rd Inv</div>
+	<div class="button s5 button-inversion" onclick="menu2.buttonFn.setInversion(this, 4)">4th Inv</div>
+	<div class="button-row"></div>
+	<div class="button s6 button-pitch-class" onclick="menu2.buttonFn.setPitchClass(this, [0, 4, 7])">Maj</div>
+	<div class="button s6 button-pitch-class" onclick="menu2.buttonFn.setPitchClass(this, [0, 4, 7, 9])">Maj6</div>
+	<div class="button s6 button-pitch-class" onclick="menu2.buttonFn.setPitchClass(this, [0, 4, 7, 11])">Maj7</div>
+	<div class="button s6 button-pitch-class" onclick="menu2.buttonFn.setPitchClass(this, [0, 4, 7, 11, 14])">Maj9</div>
+	<div class="button s6 button-pitch-class" onclick="menu2.buttonFn.setPitchClass(this, [0, 4, 7, 11, 14, 17])">Maj11</div>
+	<div class="button s6 button-pitch-class" onclick="menu2.buttonFn.setPitchClass(this, [0, 4, 7, 10])">Maj D7</div>
+
+	<div class="button s6 button-pitch-class" onclick="menu2.buttonFn.setPitchClass(this, [0, 3, 7])">min</div>
+	<div class="button s6 button-pitch-class" onclick="menu2.buttonFn.setPitchClass(this, [0, 3, 7, 9])">min6</div>
+	<div class="button s6 button-pitch-class" onclick="menu2.buttonFn.setPitchClass(this, [0, 3, 7, 10])">min7</div>
+	<div class="button s6 button-pitch-class" onclick="menu2.buttonFn.setPitchClass(this, [0, 4, 7, 10, 14])">min9</div>
+	<div class="button s6 button-pitch-class" onclick="menu2.buttonFn.setPitchClass(this, [0, 3, 7, 10, 14, 17])">min11</div>
+	<div class="button s6 button-pitch-class" onclick="menu2.buttonFn.setPitchClass(this, [0, 3, 7, 11])">minMaj7</div>
+
+	<div class="button s6 button-pitch-class" onclick="menu2.buttonFn.setPitchClass(this, [0, 4, 8])">aug</div>
+	<div class="button s6 button-pitch-class" onclick="menu2.buttonFn.setPitchClass(this, [0, 3, 6])">dim</div>
+	<div class="button s6 button-pitch-class" onclick="menu2.buttonFn.setPitchClass(this, [0, 3, 6, 9])">dim7</div>
+	<div class="button s6 button-pitch-class" onclick="menu2.buttonFn.setPitchClass(this, [0, 3, 6, 10])">ø7</div>
+	<div class="button s6 button-pitch-class" onclick="menu2.buttonFn.setPitchClass(this, [0, 2, 7])">sus2</div>
+	<div class="button s6 button-pitch-class" onclick="menu2.buttonFn.setPitchClass(this, [0, 5, 7])">sus4</div>
+</div><div id="modal-help-2" class="modal">
+	<div class="modal-content">
+		<h4>Help</h4>
+		<p>1. Select inversion and chord name</p>
+		<p>2. Everytime the keyboard is pressed, it plays the chord according to selected items</p><br>
+
+		<h4>Symbol</h4>
+		<table>
+			<tr>
+				<td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/FClef.svg/24px-FClef.svg.png" /></td>
+				<td>
+					Low : Add bass on octave 3 when playing chord<br>
+					Lower : Add bass on octave 2 when playing chord<br>
+					Double : Add bass on octave 2 and 3 when playing chord<br>
+				</td>
+			</tr>
+			<tr><td><i class="fas fa-retweet fa-lg"></i></td><td>Switch between mode</td></tr>
+			<tr><td><i class="far fa-question-circle fa-lg"></i></td><td>Get help for each mode</td></tr>
+		</table>
+	</div>
+</div><div class="button-container" id="button-container-3" style="display:none">
+
+	<div class="button-row"></div>
+
+	<div class="button s7 big-font" id="button-menu-3-play" onclick="menu3.buttonFn.togglePlay()"><i class="fas fa-play fa-lg"></i></div>
+	<div class="button s7 big-font" id="button-menu-3-record" onclick="menu3.buttonFn.toggleRecord()"><i class="fas fa-record-vinyl fa-lg"></i></div>
+	<div class="button s7 big-font" onclick="menu3.buttonFn.eraseLast()"><i class="fas fa-eraser fa-lg"></i></div>
+	<div class="button s7 big-font" onclick="menu3.buttonFn.eraseAll()"><i class="fas fa-trash fa-lg"></i></div>
+	<div class="button s7 big-font" onclick="menu3.buttonFn.addNote('HOLD')"><i class="fas fa-circle fa-lg"></i></div>
+	<div class="button s7 big-font" onclick="menu3.buttonFn.addNote('TRANSPOSE')"><i class="fas fa-asterisk fa-lg"></i></div>
+	<div class="button-row"></div>
+
+	<div class="button s5 big-font" onclick="menu3.buttonFn.addBpm(-10)">-10</div>
+	<div class="button s5 big-font" onclick="menu3.buttonFn.addBpm(-1)">-1</div>
+	<div class="button s5 big-font" onclick="menu3.buttonFn.addBpm(0)"><i class="fas fa-drum fa-lg"></i> = <span id="menu-3-bpm">120</span></div>
+	<div class="button s5 big-font" onclick="menu3.buttonFn.addBpm(1)">+1</div>
+	<div class="button s5 big-font" onclick="menu3.buttonFn.addBpm(10)">+10</div>
+
+
+	<div class="button s7 big-font menu-3-button-transpose" onclick="menu3.buttonFn.activeTranspose(-3, this)">&laquo;&laquo;&laquo;</div>
+	<div class="button s7 big-font menu-3-button-transpose" onclick="menu3.buttonFn.activeTranspose(-2, this)">&laquo;&laquo;</div>
+	<div class="button s7 big-font menu-3-button-transpose" onclick="menu3.buttonFn.activeTranspose(-1, this)">&laquo;</div>
+	<div class="button s7 big-font menu-3-button-transpose" onclick="menu3.buttonFn.activeTranspose(0, this)">o</div>
+	<div class="button s7 big-font menu-3-button-transpose" onclick="menu3.buttonFn.activeTranspose(1, this)">&raquo;</div>
+	<div class="button s7 big-font menu-3-button-transpose" onclick="menu3.buttonFn.activeTranspose(2, this)">&raquo;&raquo;</div>
+	<div class="button s7 big-font menu-3-button-transpose" onclick="menu3.buttonFn.activeTranspose(3, this)">&raquo;&raquo;&raquo;</div>
+
+	<div class="button s4 big-font" onclick="menu3.buttonFn.preset(1)">P1</div>
+	<div class="button s4 big-font" onclick="menu3.buttonFn.preset(2)">P2</div>
+	<div class="button s4 big-font" onclick="menu3.buttonFn.preset(3)">P3</div>
+	<div class="button s4 big-font" onclick="menu3.buttonFn.preset(4)">P4</div>
+	<div class="button s4 big-font" onclick="menu3.buttonFn.preset(5)">P5</div>
+	<div class="button s4 big-font" onclick="menu3.buttonFn.preset(6)">P6</div>
+	<div class="button s4 big-font" onclick="menu3.buttonFn.preset(7)">P7</div>
+	<div class="button s4 big-font" onclick="menu3.buttonFn.preset(8)">P8</div>
+	<div class="button-row"></div>
+	<div id="melody-button-container">
+		<!-- <div class="button s12" onclick="menu1.buttonFn.transpose(-2)">-5</div> -->
+	</div>
+</div>
+
+<div id="modal-help-3" class="modal">
+	<div class="modal-content">
+		<h4>Help</h4>
+		<table>
+			<tr>
+				<td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/FClef.svg/24px-FClef.svg.png" /></td>
+				<td>
+					Low : Add bass on octave 3 when playing chord<br>
+					Lower : Add bass on octave 2 when playing chord<br>
+					Double : Add bass on octave 2 and 3 when playing chord<br>
+				</td>
+			</tr>
+			<tr><td><i class="fas fa-retweet fa-lg"></i></td><td>Switch between mode</td></tr>
+			<tr><td><i class="far fa-question-circle fa-lg"></i></td><td>Get help for each mode</td></tr>
+			<tr><td><i class="fas fa-play fa-lg"></i></td><td>Play sequence of notes you create</td></tr>
+			<tr><td><i class="fas fa-record-vinyl fa-lg"></i></td><td>Record note to sequence if you press the keyboard</td></tr>
+			<tr><td><i class="fas fa-eraser fa-lg"></i></td><td>Erase last note from sequence</td></tr>
+			<tr><td><i class="fas fa-trash fa-lg"></i></td><td>Erase all notes from sequence</td></tr>
+			<tr><td><i class="fas fa-asterisk fa-lg"></i></td><td>Transpose key according to active transpose button</td></tr>
+			<tr><td><i class="fas fa-circle fa-lg"></i></td><td>Hold the note</td></tr>
+			<tr><td style="font-size: 25px;">&laquo;</td><td>Transpose half step down when transpose sequence triggered</td></tr>
+			<tr><td style="font-size: 25px;">o</td><td>Don't transpose when transpose sequence triggered</td></tr>
+			<tr><td style="font-size: 25px;">&raquo;</td><td>Transpose half step up when transpose sequence triggered</td></tr>
+			<tr><td style="font-size: 25px;">P1-P8</td><td>Apply preset for quick switching</td></tr>
+		</table>
+		<p>*You can change tempo, transpose, and preset on the go while playing</p>
+	</div>
+</div>
+<div id="modal-about" class="modal">
+	<div class="modal-content">
+		<h4>About</h4>
+		<p>This app is built to help musicians during rehearsal or practice. You can increase/decrease pitch and change the chord to help warming up your voice. You can learn many forms of all available chords here too!</p>
+		<p>I am still developing this app. Any feedback are welcome!</p>
+		<p>I hope this app can be useful for all of us!</p><br><br>
+		<p style="float:right">Sincerely, Andy</p><br>
+	</div>
+	<!-- <div class="modal-footer">
+		<a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+	</div> -->
+</div>
+
+<div id="modal-credit" class="modal">
+	<div class="modal-content" style="text-align: center;">
+		<h4>Credit</h4>
+		<div >
+			<p>&lt;sorted alphabetically&gt;<p>
+
+			<p>Special thanks to my vocal coach for requesting this app:</p>
+			<p>Ega O. Azarya<p><br>
+			<p>To my teachers who teach me a lot about musical theory:</p>
+			<p>Budi Utomo Prabowo</p>
+			<p>Joseph Kristanto Pantioso</p><br>
+			<p>To my friends for all feedback:</p>
+			<p>Cherly Susanti</p>
+			<p>Kristian Wirjadi</p>
+			<p>Sarah Charista</p>
+		</div>
+	</div>
+	<!-- <div class="modal-footer">
+		<a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+	</div> -->
+</div>
+
+
+
+
+<!-- polyfill -->
+<script src="public/inc/shim/Base64.js" type="text/javascript"></script>
+<script src="public/inc/shim/Base64binary.js" type="text/javascript"></script>
+<script src="public/inc/shim/WebAudioAPI.js" type="text/javascript"></script>
+<!-- midi.js package -->
+<script src="public/js/midi/audioDetect.js" type="text/javascript"></script>
+<script src="public/js/midi/gm.js" type="text/javascript"></script>
+<script src="public/js/midi/loader.js" type="text/javascript"></script>
+<script src="public/js/midi/plugin.audiotag.js" type="text/javascript"></script>
+<script src="public/js/midi/plugin.webaudio.js" type="text/javascript"></script>
+<script src="public/js/midi/plugin.webmidi.js" type="text/javascript"></script>
+<!-- utils -->
+<script src="public/js/util/dom_request_xhr.js" type="text/javascript"></script>
+<script src="public/js/util/dom_request_script.js" type="text/javascript"></script>
+
+<script src="public/fa/js/all.js" type="text/javascript"></script>
+<script src="public/js/main.js" type="text/javascript"></script>
+<script src="public/js/touchHandler.js" type="text/javascript"></script>
+<script src="public/js/keyboardHandler.js" type="text/javascript"></script>
+<script src="public/js/menu-1.js" type="text/javascript"></script>
+<script src="public/js/menu-2.js" type="text/javascript"></script>
+<script src="public/js/menu-3.js" type="text/javascript"></script>
+<script src="public/js/sideNav.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	(function() {
+		window.AudioContext = window.AudioContext || window.webkitAudioContext;
+		if (window.AudioContext) {
+			window.audioContext = new window.AudioContext();
+		}
+		var fixAudioContext = function (e) {
+			if (window.audioContext) {
+				// Create empty buffer
+				var buffer = window.audioContext.createBuffer(1, 1, 22050);
+				var source = window.audioContext.createBufferSource();
+				source.buffer = buffer;
+				// Connect to output (speakers)
+				source.connect(window.audioContext.destination);
+				// Play sound
+				if (source.start) {
+					source.start(0);
+				} else if (source.play) {
+					source.play(0);
+				} else if (source.noteOn) {
+					source.noteOn(0);
+				}
+
+			}
+			// Remove events
+			document.removeEventListener('touchstart', fixAudioContext);
+			document.removeEventListener('touchend', fixAudioContext);
+		};
+		// iOS 6-8
+		document.addEventListener('touchstart', fixAudioContext);
+		// iOS 9
+		document.addEventListener('touchend', fixAudioContext);
+	})();
+
+	$(document).ready(function(){
+		for(let i=MIDI.keyToNote.A0; i<=MIDI.keyToNote.C8; i++)
+		{
+			$("#keyboard").append(main.createKey(i));
+		}	
+		keys = [].slice.call(document.querySelectorAll('.key'), 0);
+
+		keyboard.addEventListener("touchstart", touchStart, false);
+		keyboard.addEventListener("touchmove", touchMove, false);
+		keyboard.addEventListener("touchend", touchEnd, false);
+
+		$('#keyboard-container').scrollLeft(1200);
+	})
+
+
+
+	$(document).ready(function(){
+		$('.sidenav').sidenav();
+	});
+			
+</script></body>
+</html>
